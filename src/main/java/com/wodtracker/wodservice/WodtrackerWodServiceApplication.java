@@ -7,6 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class WodtrackerWodServiceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(WodtrackerWodServiceApplication.class, args);
+        SpringApplication.run(WodtrackerWodServiceApplication.class, args); 
     }
 }
