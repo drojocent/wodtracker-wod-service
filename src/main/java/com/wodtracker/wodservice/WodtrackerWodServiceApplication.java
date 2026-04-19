@@ -1,4 +1,4 @@
-package com.wodtracker.wod;
+package com.wodtracker.wodservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

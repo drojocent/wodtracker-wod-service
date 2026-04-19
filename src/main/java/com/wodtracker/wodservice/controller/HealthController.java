@@ -1,4 +1,4 @@
-package com.wodtracker.wod.controller;
+package com.wodtracker.wodservice.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

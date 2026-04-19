@@ -1,0 +1,13 @@
+package com.wodtracker.wodservice;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class WodtrackerUserServiceApplicationTests {
+
+    @Test
+    void contextLoads() {
+        System.out.println("TEST EJECUTADO EN GITHUB CI");
+    }
+}
