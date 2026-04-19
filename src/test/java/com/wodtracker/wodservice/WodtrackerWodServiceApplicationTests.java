@@ -4,10 +4,14 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class WodtrackerUserServiceApplicationTests {
+class WodtrackerWodServiceApplicationTests {
 
     @Test
     void contextLoads() {
-        System.out.println("TEST EJECUTADO EN GITHUB CI");
+    }
+
+    @Test
+    void mainMethodShouldStartApplication() {
+        WodtrackerWodServiceApplication.main(new String[]{});
     }
 }
