@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - feature/**
   pull_request:
     branches:
       - main
@@ -42,3 +41,4 @@ jobs:
             -Dsonar.organization=drojocent \
             -Dsonar.host.url=https://sonarcloud.io \
             -Dsonar.token=$SONAR_TOKEN
+            -Dsonar.qualitygate.wait=true
