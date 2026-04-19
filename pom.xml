@@ -13,7 +13,7 @@
     </parent>
 
     <groupId>com.wodtracker</groupId>
-    <artifactId>wodtracker-wod-service</artifactId>
+    <artifactId>wodtracker-wod-service</artifactId> 
     <version>0.0.1-SNAPSHOT</version>
 
     <properties>
