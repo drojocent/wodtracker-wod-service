@@ -67,7 +67,7 @@ class WodProposalServiceTest {
         List<WodProposalResponseDTO> responses = wodProposalService.getPendingProposals();
 
         assertThat(responses).hasSize(1);
-        assertThat(responses.getFirst().getStatus()).isEqualTo(ProposalStatus.PENDING);
+        assertThat(responses.get(0).getStatus()).isEqualTo(ProposalStatus.PENDING);
     }
 
     @Test
