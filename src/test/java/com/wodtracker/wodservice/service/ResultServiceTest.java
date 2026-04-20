@@ -105,7 +105,7 @@ class ResultServiceTest {
         List<ResultResponseDTO> responses = resultService.getResultsByUserId(7L);
 
         assertThat(responses).hasSize(1);
-        assertThat(responses.getFirst().getUserId()).isEqualTo(7L);
+        assertThat(responses.get(0).getUserId()).isEqualTo(7L);
     }
 
     @Test
@@ -130,7 +130,7 @@ class ResultServiceTest {
         List<ResultResponseDTO> responses = resultService.getResultsByUserId(9L);
 
         assertThat(responses).hasSize(1);
-        assertThat(responses.getFirst().getUserId()).isEqualTo(9L);
+        assertThat(responses.get(0).getUserId()).isEqualTo(9L);
     }
 
     @Test
@@ -244,8 +244,8 @@ class ResultServiceTest {
         List<ResultResponseDTO> responses = resultService.getResultsByWodId(10L);
 
         assertThat(responses).hasSize(1);
-        assertThat(responses.getFirst().getWodId()).isEqualTo(10L);
-        assertThat(responses.getFirst().getWodName()).isEqualTo("Fran");
+        assertThat(responses.get(0).getWodId()).isEqualTo(10L);
+        assertThat(responses.get(0).getWodName()).isEqualTo("Fran");
     }
 
     @Test
