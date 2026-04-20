@@ -1,0 +1,2 @@
+ALTER TABLE wods
+    ALTER COLUMN date DROP NOT NULL;

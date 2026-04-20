@@ -8,6 +8,7 @@ import com.wodtracker.wodservice.entity.WodType;
 import com.wodtracker.wodservice.exception.InvalidStateException;
 import com.wodtracker.wodservice.exception.ResourceNotFoundException;
 import com.wodtracker.wodservice.repository.WodProposalRepository;
+import com.wodtracker.wodservice.repository.WodRepository;
 import com.wodtracker.wodservice.security.AuthenticatedUser;
 import com.wodtracker.wodservice.security.AuthenticatedUserProvider;
 import com.wodtracker.wodservice.service.impl.WodProposalServiceImpl;
@@ -32,6 +33,9 @@ class WodProposalServiceTest {
 
     @Mock
     private WodProposalRepository wodProposalRepository;
+
+    @Mock
+    private WodRepository wodRepository;
 
     @Mock
     private AuthenticatedUserProvider authenticatedUserProvider;
@@ -72,6 +76,7 @@ class WodProposalServiceTest {
         WodProposal approved = new WodProposal(1L, 7L, "Cindy", "Workout", WodType.AMRAP, ProposalStatus.APPROVED, LocalDateTime.now());
 
         when(wodProposalRepository.findById(1L)).thenReturn(Optional.of(proposal));
+        when(wodRepository.save(any())).thenAnswer(invocation -> invocation.getArgument(0));
         when(wodProposalRepository.save(proposal)).thenReturn(approved);
 
         WodProposalResponseDTO response = wodProposalService.approveProposal(1L);

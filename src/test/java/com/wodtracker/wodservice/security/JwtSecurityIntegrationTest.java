@@ -108,7 +108,7 @@ class JwtSecurityIntegrationTest {
     @Test
     void shouldAllowAuthenticatedUserToCreateResult() throws Exception {
         when(resultService.createResult(any())).thenReturn(
-                new ResultResponseDTO(1L, 7L, 10L, "Fran", "03:45", LocalDateTime.now())
+                new ResultResponseDTO(1L, 7L, 10L, "Fran", "21-15-9 thrusters and pull-ups", "03:45", LocalDateTime.now())
         );
 
         ResultRequestDTO requestDTO = new ResultRequestDTO(10L, "03:45");

@@ -30,6 +30,16 @@ public class GlobalExceptionHandler {
         return buildResponse(HttpStatus.BAD_REQUEST, "Invalid state", ex.getMessage(), null);
     }
 
+    @ExceptionHandler(DuplicateWodDateException.class)
+    public ResponseEntity<ErrorResponse> handleDuplicateWodDate(DuplicateWodDateException ex) {
+        return buildResponse(HttpStatus.CONFLICT, "Duplicate WOD date", ex.getMessage(), null);
+    }
+
+    @ExceptionHandler(DuplicateResultException.class)
+    public ResponseEntity<ErrorResponse> handleDuplicateResult(DuplicateResultException ex) {
+        return buildResponse(HttpStatus.CONFLICT, "Duplicate result", ex.getMessage(), null);
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorResponse> handleValidation(MethodArgumentNotValidException ex) {
         Map<String, String> validationErrors = new LinkedHashMap<>();

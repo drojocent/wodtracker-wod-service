@@ -3,10 +3,12 @@ package com.wodtracker.wodservice.service.impl;
 import com.wodtracker.wodservice.dto.WodProposalRequestDTO;
 import com.wodtracker.wodservice.dto.WodProposalResponseDTO;
 import com.wodtracker.wodservice.entity.ProposalStatus;
+import com.wodtracker.wodservice.entity.Wod;
 import com.wodtracker.wodservice.entity.WodProposal;
 import com.wodtracker.wodservice.exception.InvalidStateException;
 import com.wodtracker.wodservice.exception.ResourceNotFoundException;
 import com.wodtracker.wodservice.repository.WodProposalRepository;
+import com.wodtracker.wodservice.repository.WodRepository;
 import com.wodtracker.wodservice.security.AuthenticatedUserProvider;
 import com.wodtracker.wodservice.service.WodProposalService;
 import org.springframework.stereotype.Service;
@@ -20,13 +22,16 @@ import java.util.List;
 public class WodProposalServiceImpl implements WodProposalService {
 
     private final WodProposalRepository wodProposalRepository;
+    private final WodRepository wodRepository;
     private final AuthenticatedUserProvider authenticatedUserProvider;
 
     public WodProposalServiceImpl(
             WodProposalRepository wodProposalRepository,
+            WodRepository wodRepository,
             AuthenticatedUserProvider authenticatedUserProvider
     ) {
         this.wodProposalRepository = wodProposalRepository;
+        this.wodRepository = wodRepository;
         this.authenticatedUserProvider = authenticatedUserProvider;
     }
 
@@ -54,6 +59,7 @@ public class WodProposalServiceImpl implements WodProposalService {
     public WodProposalResponseDTO approveProposal(Long proposalId) {
         WodProposal proposal = findProposalById(proposalId);
         ensurePending(proposal);
+        createApprovedWodFromProposal(proposal);
         proposal.setStatus(ProposalStatus.APPROVED);
         return toResponse(wodProposalRepository.save(proposal));
     }
@@ -75,6 +81,16 @@ public class WodProposalServiceImpl implements WodProposalService {
         if (proposal.getStatus() != ProposalStatus.PENDING) {
             throw new InvalidStateException("Proposal is already " + proposal.getStatus());
         }
+    }
+
+    private void createApprovedWodFromProposal(WodProposal proposal) {
+        Wod wod = new Wod();
+        wod.setName(proposal.getName());
+        wod.setDescription(proposal.getDescription());
+        wod.setType(proposal.getType());
+        wod.setDate(null);
+        wod.setApproved(true);
+        wodRepository.save(wod);
     }
 
     private WodProposalResponseDTO toResponse(WodProposal proposal) {

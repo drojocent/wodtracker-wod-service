@@ -15,6 +15,7 @@ public class ResultResponseDTO {
     private Long userId;
     private Long wodId;
     private String wodName;
+    private String wodDescription;
     private String result;
     private LocalDateTime createdAt;
 }
