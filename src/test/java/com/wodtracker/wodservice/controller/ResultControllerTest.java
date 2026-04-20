@@ -39,7 +39,7 @@ class ResultControllerTest {
     @Test
     void shouldCreateResultSuccessfully() throws Exception {
         ResultRequestDTO requestDTO = new ResultRequestDTO(10L, "03:45");
-        ResultResponseDTO responseDTO = new ResultResponseDTO(1L, 7L, 10L, "Fran", "03:45", LocalDateTime.now());
+        ResultResponseDTO responseDTO = new ResultResponseDTO(1L, 7L, 10L, "Fran", "21-15-9 thrusters", "03:45", LocalDateTime.now());
 
         when(resultService.createResult(any(ResultRequestDTO.class))).thenReturn(responseDTO);
 
@@ -66,7 +66,7 @@ class ResultControllerTest {
     @Test
     void shouldReturnResultsByUserId() throws Exception {
         when(resultService.getResultsByUserId(7L)).thenReturn(List.of(
-                new ResultResponseDTO(1L, 7L, 10L, "Fran", "03:45", LocalDateTime.now())
+                new ResultResponseDTO(1L, 7L, 10L, "Fran", "21-15-9 thrusters", "03:45", LocalDateTime.now())
         ));
 
         mockMvc.perform(get("/results/user/7"))

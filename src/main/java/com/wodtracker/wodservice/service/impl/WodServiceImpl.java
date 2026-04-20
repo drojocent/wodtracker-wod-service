@@ -3,6 +3,7 @@ package com.wodtracker.wodservice.service.impl;
 import com.wodtracker.wodservice.dto.WodRequestDTO;
 import com.wodtracker.wodservice.dto.WodResponseDTO;
 import com.wodtracker.wodservice.entity.Wod;
+import com.wodtracker.wodservice.exception.DuplicateWodDateException;
 import com.wodtracker.wodservice.exception.ResourceNotFoundException;
 import com.wodtracker.wodservice.repository.WodRepository;
 import com.wodtracker.wodservice.service.WodService;
@@ -24,6 +25,7 @@ public class WodServiceImpl implements WodService {
 
     @Override
     public WodResponseDTO createWod(WodRequestDTO requestDTO) {
+        validateUniqueDate(requestDTO.getDate(), null);
         Wod wod = new Wod();
         applyValues(wod, requestDTO);
         return toResponse(wodRepository.save(wod));
@@ -53,6 +55,7 @@ public class WodServiceImpl implements WodService {
     @Override
     public WodResponseDTO updateWod(Long id, WodRequestDTO requestDTO) {
         Wod wod = findWodById(id);
+        validateUniqueDate(requestDTO.getDate(), id);
         applyValues(wod, requestDTO);
         return toResponse(wodRepository.save(wod));
     }
@@ -66,6 +69,20 @@ public class WodServiceImpl implements WodService {
     private Wod findWodById(Long id) {
         return wodRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("WOD not found with id: " + id));
+    }
+
+    private void validateUniqueDate(LocalDate date, Long currentWodId) {
+        if (date == null) {
+            return;
+        }
+
+        boolean alreadyExists = currentWodId == null
+                ? wodRepository.existsByDate(date)
+                : wodRepository.existsByDateAndIdNot(date, currentWodId);
+
+        if (alreadyExists) {
+            throw new DuplicateWodDateException("Ya existe un WOD para la fecha " + date + ".");
+        }
     }
 
     private void applyValues(Wod wod, WodRequestDTO requestDTO) {

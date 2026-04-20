@@ -9,4 +9,8 @@ import java.util.Optional;
 public interface WodRepository extends JpaRepository<Wod, Long> {
 
     Optional<Wod> findByDate(LocalDate date);
+
+    boolean existsByDate(LocalDate date);
+
+    boolean existsByDateAndIdNot(LocalDate date, Long id);
 }

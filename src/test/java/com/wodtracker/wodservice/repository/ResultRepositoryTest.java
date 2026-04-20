@@ -33,8 +33,8 @@ class ResultRepositoryTest {
         wod.setApproved(true);
         Wod savedWod = wodRepository.save(wod);
 
-        Result older = new Result(null, 7L, savedWod, "04:00", LocalDateTime.now().minusMinutes(5));
-        Result newer = new Result(null, 7L, savedWod, "03:45", LocalDateTime.now());
+        Result older = new Result(null, 7L, savedWod, "Fran", "Workout", "04:00", LocalDateTime.now().minusMinutes(5));
+        Result newer = new Result(null, 7L, savedWod, "Fran", "Workout", "03:45", LocalDateTime.now());
         resultRepository.save(older);
         resultRepository.save(newer);
 

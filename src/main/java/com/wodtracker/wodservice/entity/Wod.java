@@ -39,7 +39,7 @@ public class Wod {
     @Column(nullable = false, length = 20)
     private WodType type;
 
-    @Column(nullable = false)
+    @Column
     private LocalDate date;
 
     @Column(nullable = false)

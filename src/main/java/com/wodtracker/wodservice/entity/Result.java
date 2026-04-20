@@ -33,6 +33,12 @@ public class Result {
     @JoinColumn(name = "wod_id", nullable = false)
     private Wod wod;
 
+    @Column(name = "wod_name", nullable = false, length = 150)
+    private String wodName;
+
+    @Column(name = "wod_description", nullable = false, columnDefinition = "TEXT")
+    private String wodDescription;
+
     @Column(nullable = false, length = 255)
     private String result;
 
