@@ -13,6 +13,18 @@ INSERT INTO wod_proposals (id, user_id, name, description, type, status, created
     (2, 3, 'Engine Builder', 'AMRAP 18 of 12 calories, 12 kettlebell swings and 12 toes-to-bar', 'AMRAP', 'PENDING', DATEADD('HOUR', -8, CURRENT_TIMESTAMP)),
     (3, 2, 'Lung Burner', 'EMOM 12 with 10 lunges and 8 push-ups', 'EMOM', 'APPROVED', DATEADD('DAY', -2, CURRENT_TIMESTAMP));
 
+INSERT INTO benchmarks (id, name, description, type, created_at) VALUES
+    (1, 'Fran', '21-15-9 thrusters and pull-ups', 'FOR_TIME', DATEADD('DAY', -15, CURRENT_TIMESTAMP)),
+    (2, 'Cindy', '20 minute AMRAP of 5 pull-ups, 10 push-ups and 15 air squats', 'AMRAP', DATEADD('DAY', -12, CURRENT_TIMESTAMP)),
+    (3, 'Death by Burpees', 'EMOM adding 1 burpee every minute until failure', 'EMOM', DATEADD('DAY', -7, CURRENT_TIMESTAMP));
+
+INSERT INTO benchmark_results (id, benchmark_id, user_id, result, created_at) VALUES
+    (1, 1, 2, '04:12', DATEADD('DAY', -6, CURRENT_TIMESTAMP)),
+    (2, 1, 2, '03:58', DATEADD('DAY', -2, CURRENT_TIMESTAMP)),
+    (3, 2, 3, '15 rounds + 10 reps', DATEADD('DAY', -1, CURRENT_TIMESTAMP));
+
 ALTER TABLE wods ALTER COLUMN id RESTART WITH 10;
 ALTER TABLE results ALTER COLUMN id RESTART WITH 10;
 ALTER TABLE wod_proposals ALTER COLUMN id RESTART WITH 10;
+ALTER TABLE benchmarks ALTER COLUMN id RESTART WITH 10;
+ALTER TABLE benchmark_results ALTER COLUMN id RESTART WITH 10;
