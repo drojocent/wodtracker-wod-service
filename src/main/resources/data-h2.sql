@@ -23,8 +23,15 @@ INSERT INTO benchmark_results (id, benchmark_id, user_id, result, created_at) VA
     (2, 1, 2, '03:58', DATEADD('DAY', -2, CURRENT_TIMESTAMP)),
     (3, 2, 3, '15 rounds + 10 reps', DATEADD('DAY', -1, CURRENT_TIMESTAMP));
 
+INSERT INTO personal_records (id, user_id, exercise, weight, created_at) VALUES
+    (1, 2, 'BACK_SQUAT', 140.00, DATEADD('DAY', -30, CURRENT_TIMESTAMP)),
+    (2, 2, 'BACK_SQUAT', 145.00, DATEADD('DAY', -10, CURRENT_TIMESTAMP)),
+    (3, 2, 'SNATCH', 75.00, DATEADD('DAY', -5, CURRENT_TIMESTAMP)),
+    (4, 3, 'DEADLIFT', 180.00, DATEADD('DAY', -3, CURRENT_TIMESTAMP));
+
 ALTER TABLE wods ALTER COLUMN id RESTART WITH 10;
 ALTER TABLE results ALTER COLUMN id RESTART WITH 10;
 ALTER TABLE wod_proposals ALTER COLUMN id RESTART WITH 10;
 ALTER TABLE benchmarks ALTER COLUMN id RESTART WITH 10;
 ALTER TABLE benchmark_results ALTER COLUMN id RESTART WITH 10;
+ALTER TABLE personal_records ALTER COLUMN id RESTART WITH 10;
