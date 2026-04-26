@@ -21,6 +21,7 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -69,6 +70,23 @@ class WodServiceTest {
         assertThatThrownBy(() -> wodService.getTodayWod())
                 .isInstanceOf(ResourceNotFoundException.class)
                 .hasMessage("No se ha encontrado un WOD para hoy.");
+    }
+
+    @Test
+    void shouldReturnOnlyCurrentAndFutureWods() {
+        LocalDate today = LocalDate.now();
+        Wod todayWod = new Wod(1L, "Hoy", "Workout de hoy", WodType.FOR_TIME, today, true, List.of());
+        Wod futureWod = new Wod(2L, "Manana", "Workout futuro", WodType.AMRAP, today.plusDays(1), true, List.of());
+
+        when(wodRepository.findByDateGreaterThanEqualOrderByDateAsc(eq(today)))
+                .thenReturn(List.of(todayWod, futureWod));
+
+        List<WodResponseDTO> response = wodService.getAllWods();
+
+        assertThat(response).hasSize(2);
+        assertThat(response).extracting(WodResponseDTO::getName)
+                .containsExactly("Hoy", "Manana");
+        verify(wodRepository).findByDateGreaterThanEqualOrderByDateAsc(today);
     }
 
     @Test

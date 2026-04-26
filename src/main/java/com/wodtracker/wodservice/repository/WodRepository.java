@@ -4,11 +4,14 @@ import com.wodtracker.wodservice.entity.Wod;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 public interface WodRepository extends JpaRepository<Wod, Long> {
 
     Optional<Wod> findByDate(LocalDate date);
+
+    List<Wod> findByDateGreaterThanEqualOrderByDateAsc(LocalDate date);
 
     boolean existsByDate(LocalDate date);
 
