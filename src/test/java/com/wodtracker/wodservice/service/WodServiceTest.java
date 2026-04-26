@@ -68,7 +68,7 @@ class WodServiceTest {
 
         assertThatThrownBy(() -> wodService.getTodayWod())
                 .isInstanceOf(ResourceNotFoundException.class)
-                .hasMessage("WOD not found for today");
+                .hasMessage("No se ha encontrado un WOD para hoy.");
     }
 
     @Test

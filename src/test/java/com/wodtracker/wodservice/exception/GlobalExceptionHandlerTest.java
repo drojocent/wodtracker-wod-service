@@ -26,7 +26,7 @@ class GlobalExceptionHandlerTest {
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.CONFLICT);
         assertThat(response.getBody()).isNotNull();
-        assertThat(response.getBody().getError()).isEqualTo("Duplicate WOD date");
+        assertThat(response.getBody().getError()).isEqualTo("Fecha de WOD duplicada");
         assertThat(response.getBody().getMessage()).isEqualTo("Ya existe un WOD para la fecha 2026-04-20.");
     }
 
@@ -38,14 +38,14 @@ class GlobalExceptionHandlerTest {
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.CONFLICT);
         assertThat(response.getBody()).isNotNull();
-        assertThat(response.getBody().getError()).isEqualTo("Duplicate result");
+        assertThat(response.getBody().getError()).isEqualTo("Resultado duplicado");
     }
 
     @Test
     void shouldHandleValidationErrors() throws NoSuchMethodException {
         BeanPropertyBindingResult bindingResult = new BeanPropertyBindingResult(new Object(), "request");
-        bindingResult.addError(new FieldError("request", "wodId", "Wod id is required"));
-        bindingResult.addError(new FieldError("request", "result", "Result is required"));
+        bindingResult.addError(new FieldError("request", "wodId", "El identificador del WOD es obligatorio."));
+        bindingResult.addError(new FieldError("request", "result", "El resultado es obligatorio."));
 
         Method method = SampleController.class.getDeclaredMethod("sampleMethod", String.class);
         MethodParameter parameter = new MethodParameter(method, 0);
@@ -55,10 +55,11 @@ class GlobalExceptionHandlerTest {
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
         assertThat(response.getBody()).isNotNull();
-        assertThat(response.getBody().getError()).isEqualTo("Validation failed");
+        assertThat(response.getBody().getError()).isEqualTo("Validación fallida");
+        assertThat(response.getBody().getMessage()).isEqualTo("La solicitud contiene errores de validación.");
         assertThat(response.getBody().getValidationErrors())
-                .containsEntry("wodId", "Wod id is required")
-                .containsEntry("result", "Result is required");
+                .containsEntry("wodId", "El identificador del WOD es obligatorio.")
+                .containsEntry("result", "El resultado es obligatorio.");
     }
 
     @Test
@@ -69,8 +70,8 @@ class GlobalExceptionHandlerTest {
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.FORBIDDEN);
         assertThat(response.getBody()).isNotNull();
-        assertThat(response.getBody().getError()).isEqualTo("Access denied");
-        assertThat(response.getBody().getMessage()).isEqualTo("Forbidden");
+        assertThat(response.getBody().getError()).isEqualTo("Acceso denegado");
+        assertThat(response.getBody().getMessage()).isEqualTo("No tienes permisos para acceder a este recurso.");
     }
 
     @Test
@@ -81,8 +82,8 @@ class GlobalExceptionHandlerTest {
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.INTERNAL_SERVER_ERROR);
         assertThat(response.getBody()).isNotNull();
-        assertThat(response.getBody().getError()).isEqualTo("Internal server error");
-        assertThat(response.getBody().getMessage()).isEqualTo("Boom");
+        assertThat(response.getBody().getError()).isEqualTo("Error interno del servidor");
+        assertThat(response.getBody().getMessage()).isEqualTo("Ha ocurrido un error interno del servidor.");
     }
 
     static class SampleController {

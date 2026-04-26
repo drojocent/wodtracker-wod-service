@@ -91,7 +91,7 @@ class WodProposalServiceTest {
 
         assertThatThrownBy(() -> wodProposalService.rejectProposal(1L))
                 .isInstanceOf(InvalidStateException.class)
-                .hasMessage("Proposal is already APPROVED");
+                .hasMessage("La propuesta ya esta en estado APPROVED.");
     }
 
     @Test
@@ -100,6 +100,6 @@ class WodProposalServiceTest {
 
         assertThatThrownBy(() -> wodProposalService.approveProposal(3L))
                 .isInstanceOf(ResourceNotFoundException.class)
-                .hasMessage("Proposal not found with id: 3");
+                .hasMessage("No se ha encontrado la propuesta solicitada");
     }
 }

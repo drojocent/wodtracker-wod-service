@@ -12,10 +12,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ResultRequestDTO {
 
-    @NotNull(message = "Wod id is required")
+    @NotNull(message = "El identificador del WOD es obligatorio.")
     private Long wodId;
 
-    @NotBlank(message = "Result is required")
-    @Size(max = 255, message = "Result must not exceed 255 characters")
+    @NotBlank(message = "El resultado es obligatorio.")
+    @Size(max = 255, message = "El resultado no puede superar los 255 caracteres.")
     private String result;
 }

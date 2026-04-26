@@ -41,7 +41,9 @@ public class ResultServiceImpl implements ResultService {
         AuthenticatedUser user = authenticatedUserProvider.getAuthenticatedUser();
         validateUniqueResult(user.userId(), requestDTO.getWodId(), null);
         Wod wod = wodRepository.findById(requestDTO.getWodId())
-                .orElseThrow(() -> new ResourceNotFoundException("WOD not found with id: " + requestDTO.getWodId()));
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "No se ha encontrado el WOD solicitado"
+                ));
 
         Result result = new Result();
         result.setUserId(user.userId());
@@ -57,16 +59,20 @@ public class ResultServiceImpl implements ResultService {
     public ResultResponseDTO updateResult(Long resultId, ResultRequestDTO requestDTO) {
         AuthenticatedUser user = authenticatedUserProvider.getAuthenticatedUser();
         Result result = resultRepository.findById(resultId)
-                .orElseThrow(() -> new ResourceNotFoundException("Result not found with id: " + resultId));
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "No se ha encontrado el resultado solicitado"
+                ));
 
         if (!user.isAdmin() && !user.userId().equals(result.getUserId())) {
-            throw new AccessDeniedBusinessException("You can only edit your own results");
+            throw new AccessDeniedBusinessException("Solo puedes editar tus propios resultados.");
         }
 
         validateUniqueResult(result.getUserId(), requestDTO.getWodId(), resultId);
 
         Wod wod = wodRepository.findById(requestDTO.getWodId())
-                .orElseThrow(() -> new ResourceNotFoundException("WOD not found with id: " + requestDTO.getWodId()));
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "No se ha encontrado el WOD solicitado"
+                ));
 
         result.setWod(wod);
         result.setWodName(wod.getName());
@@ -80,7 +86,7 @@ public class ResultServiceImpl implements ResultService {
     public List<ResultResponseDTO> getResultsByUserId(Long userId) {
         AuthenticatedUser user = authenticatedUserProvider.getAuthenticatedUser();
         if (!user.isAdmin() && !user.userId().equals(userId)) {
-            throw new AccessDeniedBusinessException("You can only access your own results");
+            throw new AccessDeniedBusinessException("Solo puedes consultar tus propios resultados.");
         }
 
         return resultRepository.findByUserIdOrderByCreatedAtDesc(userId).stream()
@@ -92,7 +98,7 @@ public class ResultServiceImpl implements ResultService {
     @Transactional(readOnly = true)
     public List<ResultResponseDTO> getResultsByWodId(Long wodId) {
         if (!wodRepository.existsById(wodId)) {
-            throw new ResourceNotFoundException("WOD not found with id: " + wodId);
+            throw new ResourceNotFoundException("No se ha encontrado el WOD solicitado");
         }
 
         return resultRepository.findByWodIdOrderByCreatedAtDesc(wodId).stream()

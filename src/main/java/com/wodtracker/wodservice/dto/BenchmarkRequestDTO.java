@@ -13,13 +13,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class BenchmarkRequestDTO {
 
-    @NotBlank(message = "Name is required")
-    @Size(max = 150, message = "Name must not exceed 150 characters")
+    @NotBlank(message = "El nombre es obligatorio.")
+    @Size(max = 150, message = "El nombre no puede superar los 150 caracteres.")
     private String name;
 
-    @NotBlank(message = "Description is required")
+    @NotBlank(message = "La descripcion es obligatoria.")
     private String description;
 
-    @NotNull(message = "Type is required")
+    @NotNull(message = "El tipo es obligatorio.")
     private BenchmarkType type;
 }

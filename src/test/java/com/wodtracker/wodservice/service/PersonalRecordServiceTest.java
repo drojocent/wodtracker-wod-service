@@ -79,7 +79,7 @@ class PersonalRecordServiceTest {
 
         assertThatThrownBy(() -> personalRecordService.getMyPersonalRecord(ExerciseType.SNATCH))
                 .isInstanceOf(ResourceNotFoundException.class)
-                .hasMessage("Personal record not found for exercise: SNATCH");
+                .hasMessage("No se ha encontrado un record personal para el ejercicio SNATCH.");
     }
 
     @Test

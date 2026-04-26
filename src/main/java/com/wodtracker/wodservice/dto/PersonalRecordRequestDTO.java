@@ -13,7 +13,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 public class PersonalRecordRequestDTO {
 
-    @NotNull(message = "Weight is required")
-    @DecimalMin(value = "0.01", message = "Weight must be greater than 0")
+    @NotNull(message = "El peso es obligatorio.")
+    @DecimalMin(value = "0.01", message = "El peso debe ser mayor que 0.")
     private BigDecimal weight;
 }

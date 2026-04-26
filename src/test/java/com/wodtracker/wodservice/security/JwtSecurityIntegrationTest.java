@@ -49,7 +49,9 @@ class JwtSecurityIntegrationTest {
     @Test
     void shouldRejectProtectedEndpointWithoutJwt() throws Exception {
         mockMvc.perform(get("/wods"))
-                .andExpect(status().isUnauthorized());
+                .andExpect(status().isUnauthorized())
+                .andExpect(jsonPath("$.error").value("No autenticado"))
+                .andExpect(jsonPath("$.message").value("Debes iniciar sesión para acceder a este recurso."));
     }
 
     @Test
@@ -75,10 +77,12 @@ class JwtSecurityIntegrationTest {
                                   "type": "FOR_TIME",
                                   "date": "%s",
                                   "approved": true
-                                }
+                }
                                 """.formatted(LocalDate.now()))
                         .with(userJwt(7L, "athlete@example.com", "USER")))
-                .andExpect(status().isForbidden());
+                .andExpect(status().isForbidden())
+                .andExpect(jsonPath("$.error").value("Acceso denegado"))
+                .andExpect(jsonPath("$.message").value("No tienes permisos para acceder a este recurso."));
     }
 
     @Test

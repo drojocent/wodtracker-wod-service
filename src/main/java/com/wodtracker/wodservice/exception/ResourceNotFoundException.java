@@ -2,7 +2,12 @@ package com.wodtracker.wodservice.exception;
 
 public class ResourceNotFoundException extends RuntimeException {
 
-    public ResourceNotFoundException(String message) {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 3941099027371514320L;
+
+	public ResourceNotFoundException(String message) {
         super(message);
     }
 }

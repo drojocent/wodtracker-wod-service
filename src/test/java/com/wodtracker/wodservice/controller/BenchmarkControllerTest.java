@@ -91,7 +91,7 @@ class BenchmarkControllerTest {
                         .contentType(APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(invalid)))
                 .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.validationErrors.result").value("Result is required"));
+                .andExpect(jsonPath("$.validationErrors.result").value("El resultado es obligatorio."));
     }
 
     @Test

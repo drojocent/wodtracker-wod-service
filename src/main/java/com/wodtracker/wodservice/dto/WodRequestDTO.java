@@ -16,20 +16,20 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class WodRequestDTO {
 
-    @NotBlank(message = "Name is required")
-    @Size(max = 150, message = "Name must not exceed 150 characters")
+    @NotBlank(message = "El nombre es obligatorio.")
+    @Size(max = 150, message = "El nombre no puede superar los 150 caracteres.")
     private String name;
 
-    @NotBlank(message = "Description is required")
+    @NotBlank(message = "La descripcion es obligatoria.")
     private String description;
 
-    @NotNull(message = "Type is required")
+    @NotNull(message = "El tipo es obligatorio.")
     private WodType type;
 
-    @NotNull(message = "Date is required")
-    @FutureOrPresent(message = "Date must be today or in the future")
+    @NotNull(message = "La fecha es obligatoria.")
+    @FutureOrPresent(message = "La fecha debe ser hoy o una fecha futura.")
     private LocalDate date;
 
-    @NotNull(message = "Approved flag is required")
+    @NotNull(message = "El indicador de aprobacion es obligatorio.")
     private Boolean approved;
 }

@@ -79,7 +79,7 @@ class ResultServiceTest {
 
         assertThatThrownBy(() -> resultService.createResult(new ResultRequestDTO(10L, "03:45")))
                 .isInstanceOf(ResourceNotFoundException.class)
-                .hasMessage("WOD not found with id: 10");
+                .hasMessage("No se ha encontrado el WOD solicitado");
     }
 
     @Test
@@ -115,7 +115,7 @@ class ResultServiceTest {
 
         assertThatThrownBy(() -> resultService.getResultsByUserId(9L))
                 .isInstanceOf(AccessDeniedBusinessException.class)
-                .hasMessage("You can only access your own results");
+                .hasMessage("Solo puedes consultar tus propios resultados.");
     }
 
     @Test
@@ -170,7 +170,7 @@ class ResultServiceTest {
 
         assertThatThrownBy(() -> resultService.updateResult(5L, new ResultRequestDTO(10L, "04:00")))
                 .isInstanceOf(AccessDeniedBusinessException.class)
-                .hasMessage("You can only edit your own results");
+                .hasMessage("Solo puedes editar tus propios resultados.");
     }
 
     @Test
@@ -214,7 +214,7 @@ class ResultServiceTest {
 
         assertThatThrownBy(() -> resultService.updateResult(5L, new ResultRequestDTO(10L, "04:00")))
                 .isInstanceOf(ResourceNotFoundException.class)
-                .hasMessage("Result not found with id: 5");
+                .hasMessage("No se ha encontrado el resultado solicitado");
     }
 
     @Test
@@ -230,7 +230,7 @@ class ResultServiceTest {
 
         assertThatThrownBy(() -> resultService.updateResult(5L, new ResultRequestDTO(12L, "04:00")))
                 .isInstanceOf(ResourceNotFoundException.class)
-                .hasMessage("WOD not found with id: 12");
+                .hasMessage("No se ha encontrado el WOD solicitado");
     }
 
     @Test
@@ -254,6 +254,6 @@ class ResultServiceTest {
 
         assertThatThrownBy(() -> resultService.getResultsByWodId(10L))
                 .isInstanceOf(ResourceNotFoundException.class)
-                .hasMessage("WOD not found with id: 10");
+                .hasMessage("No se ha encontrado el WOD solicitado");
     }
 }
