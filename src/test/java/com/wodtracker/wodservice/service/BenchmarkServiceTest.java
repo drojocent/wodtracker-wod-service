@@ -92,6 +92,6 @@ class BenchmarkServiceTest {
 
         assertThatThrownBy(() -> benchmarkService.getBenchmarkById(99L))
                 .isInstanceOf(ResourceNotFoundException.class)
-                .hasMessage("Benchmark not found with id: 99");
+                .hasMessage("No se ha encontrado el benchmark solicitado");
     }
 }

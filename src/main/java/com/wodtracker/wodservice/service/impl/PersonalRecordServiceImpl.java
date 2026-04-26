@@ -43,7 +43,9 @@ public class PersonalRecordServiceImpl implements PersonalRecordService {
 
         return personalRecordRepository.findFirstByUserIdAndExerciseOrderByWeightDescCreatedAtDesc(userId, exercise)
                 .map(this::toResponse)
-                .orElseThrow(() -> new ResourceNotFoundException("Personal record not found for exercise: " + exercise));
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "No se ha encontrado un record personal para el ejercicio "+ exercise + "."
+                ));
     }
 
     @Override

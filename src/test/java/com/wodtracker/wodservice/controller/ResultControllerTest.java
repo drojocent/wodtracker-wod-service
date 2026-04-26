@@ -59,8 +59,8 @@ class ResultControllerTest {
                         .contentType(APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(invalid)))
                 .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.validationErrors.wodId").value("Wod id is required"))
-                .andExpect(jsonPath("$.validationErrors.result").value("Result is required"));
+                .andExpect(jsonPath("$.validationErrors.wodId").value("El identificador del WOD es obligatorio."))
+                .andExpect(jsonPath("$.validationErrors.result").value("El resultado es obligatorio."));
     }
 
     @Test
@@ -77,11 +77,11 @@ class ResultControllerTest {
     @Test
     void shouldHandleForbiddenBusinessException() throws Exception {
         when(resultService.getResultsByUserId(9L))
-                .thenThrow(new AccessDeniedBusinessException("You can only access your own results"));
+                .thenThrow(new AccessDeniedBusinessException("Solo puedes consultar tus propios resultados."));
 
         mockMvc.perform(get("/results/user/9"))
                 .andExpect(status().isForbidden())
-                .andExpect(jsonPath("$.error").value("Access denied"))
-                .andExpect(jsonPath("$.message").value("You can only access your own results"));
+                .andExpect(jsonPath("$.error").value("Acceso denegado"))
+                .andExpect(jsonPath("$.message").value("Solo puedes consultar tus propios resultados."));
     }
 }

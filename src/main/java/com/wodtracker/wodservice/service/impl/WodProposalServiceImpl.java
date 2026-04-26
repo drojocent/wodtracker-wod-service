@@ -74,12 +74,12 @@ public class WodProposalServiceImpl implements WodProposalService {
 
     private WodProposal findProposalById(Long proposalId) {
         return wodProposalRepository.findById(proposalId)
-                .orElseThrow(() -> new ResourceNotFoundException("Proposal not found with id: " + proposalId));
+                .orElseThrow(() -> new ResourceNotFoundException("No se ha encontrado la propuesta solicitada"));
     }
 
     private void ensurePending(WodProposal proposal) {
         if (proposal.getStatus() != ProposalStatus.PENDING) {
-            throw new InvalidStateException("Proposal is already " + proposal.getStatus());
+            throw new InvalidStateException("La propuesta ya esta en estado " + proposal.getStatus() + ".");
         }
     }
 

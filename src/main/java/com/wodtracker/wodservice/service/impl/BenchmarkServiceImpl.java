@@ -59,7 +59,7 @@ public class BenchmarkServiceImpl implements BenchmarkService {
 
     private Benchmark findBenchmarkById(Long id) {
         return benchmarkRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Benchmark not found with id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("No se ha encontrado el benchmark solicitado"));
     }
 
     private void applyValues(Benchmark benchmark, BenchmarkRequestDTO requestDTO) {

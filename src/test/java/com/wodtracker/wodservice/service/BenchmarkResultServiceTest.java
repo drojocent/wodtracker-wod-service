@@ -86,6 +86,6 @@ class BenchmarkResultServiceTest {
 
         assertThatThrownBy(() -> benchmarkResultService.createResult(99L, new BenchmarkResultRequestDTO("03:45")))
                 .isInstanceOf(ResourceNotFoundException.class)
-                .hasMessage("Benchmark not found with id: 99");
+                .hasMessage("No se ha encontrado el benchmark solicitado");
     }
 }

@@ -49,7 +49,7 @@ public class WodServiceImpl implements WodService {
     @Transactional(readOnly = true)
     public WodResponseDTO getTodayWod() {
         return toResponse(wodRepository.findByDate(LocalDate.now())
-                .orElseThrow(() -> new ResourceNotFoundException("WOD not found for today")));
+                .orElseThrow(() -> new ResourceNotFoundException("No se ha encontrado un WOD para hoy.")));
     }
 
     @Override
@@ -68,7 +68,7 @@ public class WodServiceImpl implements WodService {
 
     private Wod findWodById(Long id) {
         return wodRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("WOD not found with id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("No se ha encontrado el WOD solicitado"));
     }
 
     private void validateUniqueDate(LocalDate date, Long currentWodId) {

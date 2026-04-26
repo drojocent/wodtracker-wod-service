@@ -61,12 +61,12 @@ class WodControllerTest {
                         .contentType(APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(invalid)))
                 .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.error").value("Validation failed"))
-                .andExpect(jsonPath("$.validationErrors.name").value("Name is required"))
-                .andExpect(jsonPath("$.validationErrors.description").value("Description is required"))
-                .andExpect(jsonPath("$.validationErrors.type").value("Type is required"))
-                .andExpect(jsonPath("$.validationErrors.date").value("Date is required"))
-                .andExpect(jsonPath("$.validationErrors.approved").value("Approved flag is required"));
+                .andExpect(jsonPath("$.error").value("Validación fallida"))
+                .andExpect(jsonPath("$.validationErrors.name").value("El nombre es obligatorio."))
+                .andExpect(jsonPath("$.validationErrors.description").value("La descripcion es obligatoria."))
+                .andExpect(jsonPath("$.validationErrors.type").value("El tipo es obligatorio."))
+                .andExpect(jsonPath("$.validationErrors.date").value("La fecha es obligatoria."))
+                .andExpect(jsonPath("$.validationErrors.approved").value("El indicador de aprobacion es obligatorio."));
     }
 
     @Test
@@ -93,12 +93,12 @@ class WodControllerTest {
 
     @Test
     void shouldHandleNotFoundException() throws Exception {
-        when(wodService.getWodById(99L)).thenThrow(new ResourceNotFoundException("WOD not found with id: 99"));
+        when(wodService.getWodById(99L)).thenThrow(new ResourceNotFoundException("No se ha encontrado el WOD solicitado"));
 
         mockMvc.perform(get("/wods/99"))
                 .andExpect(status().isNotFound())
-                .andExpect(jsonPath("$.error").value("Resource not found"))
-                .andExpect(jsonPath("$.message").value("WOD not found with id: 99"));
+                .andExpect(jsonPath("$.error").value("Recurso no encontrado"))
+                .andExpect(jsonPath("$.message").value("No se ha encontrado el WOD solicitado"));
     }
 
     @Test

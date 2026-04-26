@@ -79,11 +79,12 @@ class WodProposalControllerTest {
 
     @Test
     void shouldHandleInvalidStateException() throws Exception {
-        when(wodProposalService.rejectProposal(1L)).thenThrow(new InvalidStateException("Proposal is already APPROVED"));
+        when(wodProposalService.rejectProposal(1L))
+                .thenThrow(new InvalidStateException("La propuesta ya esta en estado APPROVED."));
 
         mockMvc.perform(patch("/proposals/1/reject"))
                 .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.error").value("Invalid state"))
-                .andExpect(jsonPath("$.message").value("Proposal is already APPROVED"));
+                .andExpect(jsonPath("$.error").value("Estado no válido"))
+                .andExpect(jsonPath("$.message").value("La propuesta ya esta en estado APPROVED."));
     }
 }
