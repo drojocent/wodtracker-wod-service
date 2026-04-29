@@ -1,7 +1,7 @@
 package com.wodtracker.wodservice.controller;
 
-import com.wodtracker.wodservice.dto.WodProposalRequestDTO;
-import com.wodtracker.wodservice.dto.WodProposalResponseDTO;
+import com.wodtracker.wodservice.dto.request.WodProposalRequestDTO;
+import com.wodtracker.wodservice.dto.response.WodProposalResponseDTO;
 import com.wodtracker.wodservice.service.WodProposalService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;

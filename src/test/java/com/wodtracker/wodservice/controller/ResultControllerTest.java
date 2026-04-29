@@ -1,8 +1,8 @@
 package com.wodtracker.wodservice.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.wodtracker.wodservice.dto.ResultRequestDTO;
-import com.wodtracker.wodservice.dto.ResultResponseDTO;
+import com.wodtracker.wodservice.dto.request.ResultRequestDTO;
+import com.wodtracker.wodservice.dto.response.ResultResponseDTO;
 import com.wodtracker.wodservice.exception.AccessDeniedBusinessException;
 import com.wodtracker.wodservice.service.ResultService;
 import org.junit.jupiter.api.Test;

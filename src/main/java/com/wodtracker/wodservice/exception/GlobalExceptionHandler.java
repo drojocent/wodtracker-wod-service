@@ -1,6 +1,6 @@
 package com.wodtracker.wodservice.exception;
 
-import com.wodtracker.wodservice.dto.ErrorResponse;
+import com.wodtracker.wodservice.dto.response.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;

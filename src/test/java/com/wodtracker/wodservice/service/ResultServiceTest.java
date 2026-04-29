@@ -1,7 +1,7 @@
 package com.wodtracker.wodservice.service;
 
-import com.wodtracker.wodservice.dto.ResultRequestDTO;
-import com.wodtracker.wodservice.dto.ResultResponseDTO;
+import com.wodtracker.wodservice.dto.request.ResultRequestDTO;
+import com.wodtracker.wodservice.dto.response.ResultResponseDTO;
 import com.wodtracker.wodservice.entity.Result;
 import com.wodtracker.wodservice.entity.Wod;
 import com.wodtracker.wodservice.entity.WodType;

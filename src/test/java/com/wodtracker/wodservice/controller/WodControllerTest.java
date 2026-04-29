@@ -1,8 +1,8 @@
 package com.wodtracker.wodservice.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.wodtracker.wodservice.dto.WodRequestDTO;
-import com.wodtracker.wodservice.dto.WodResponseDTO;
+import com.wodtracker.wodservice.dto.request.WodRequestDTO;
+import com.wodtracker.wodservice.dto.response.WodResponseDTO;
 import com.wodtracker.wodservice.entity.WodType;
 import com.wodtracker.wodservice.exception.ResourceNotFoundException;
 import com.wodtracker.wodservice.service.WodService;

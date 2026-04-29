@@ -1,9 +1,9 @@
 package com.wodtracker.wodservice.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.wodtracker.wodservice.dto.ResultRequestDTO;
-import com.wodtracker.wodservice.dto.ResultResponseDTO;
-import com.wodtracker.wodservice.dto.WodResponseDTO;
+import com.wodtracker.wodservice.dto.request.ResultRequestDTO;
+import com.wodtracker.wodservice.dto.response.ResultResponseDTO;
+import com.wodtracker.wodservice.dto.response.WodResponseDTO;
 import com.wodtracker.wodservice.service.ResultService;
 import com.wodtracker.wodservice.service.WodService;
 import org.junit.jupiter.api.Test;

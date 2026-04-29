@@ -1,8 +1,8 @@
 package com.wodtracker.wodservice.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.wodtracker.wodservice.dto.PersonalRecordRequestDTO;
-import com.wodtracker.wodservice.dto.PersonalRecordResponseDTO;
+import com.wodtracker.wodservice.dto.request.PersonalRecordRequestDTO;
+import com.wodtracker.wodservice.dto.response.PersonalRecordResponseDTO;
 import com.wodtracker.wodservice.entity.ExerciseType;
 import com.wodtracker.wodservice.service.PersonalRecordService;
 import org.junit.jupiter.api.Test;

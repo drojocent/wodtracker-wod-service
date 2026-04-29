@@ -13,25 +13,6 @@ Microservicio REST que gestiona entrenamientos (WODs), benchmarks, récords pers
 - Aprobación de propuestas
 - Validación de entrada
 
-## Stack
-
-- Spring Boot 3.5.13
-- Java 17
-- Spring Security 6
-- Spring Data JPA
-- PostgreSQL 15
-- Flyway para migraciones
-- Lombok
-- SpringDoc OpenAPI (Swagger)
-- Maven
-
-## Requisitos
-
-- Java 17+
-- Maven 3.8.0+
-- PostgreSQL 14+ (para producción)
-- Docker (opcional)
-
 ## Instalación
 
 ### Desarrollo local con H2
@@ -41,8 +22,7 @@ mvn clean install
 mvn spring-boot:run -Dspring-boot.run.arguments="--spring.profiles.active=h2"
 ```
 
-Accesible en http://localhost:8081
-
+Accesible en `http://localhost:8081`
 
 ## Scripts
 
@@ -56,59 +36,71 @@ mvn spring-boot:run        # Ejecutar aplicación
 
 ## Estructura
 
-```
+```text
 src/main/java/com/wodtracker/wodservice/
 ├── config/          # Configuración Spring
-├── controller/      # REST Endpoints
+├── controller/      # Endpoints REST
 ├── service/         # Lógica de negocio
 ├── repository/      # Acceso a datos (JPA)
 ├── entity/          # Entidades JPA
-├── dto/             # Data Transfer Objects
-├── mapper/          # Entity-DTO mapping
-├── security/        # Autenticación/Autorización
+├── dto/
+│   ├── request/     # DTOs de entrada
+│   └── response/    # DTOs de salida
+├── security/        # Autenticación y autorización
 ├── exception/       # Excepciones personalizadas
-└── Application.java # Main
+└── WodtrackerWodServiceApplication.java # Main
 ```
 
 ## Endpoints API
 
 WODs:
-```
-POST /wods
-GET /wods
-GET /wods/{id}
-GET /wods/today
-PUT /wods/{id}
+
+```text
+POST   /wods
+GET    /wods
+GET    /wods/{id}
+GET    /wods/today
+PUT    /wods/{id}
 DELETE /wods/{id}
 ```
 
 Resultados:
-```
+
+```text
 POST /results
-GET /results
-GET /results/wod/{wodId}
+PUT  /results/{id}
+GET  /results/user/{userId}
+GET  /results/wod/{wodId}
 ```
 
 Benchmarks:
-```
-POST /benchmarks
-GET /benchmarks
-GET /benchmarks/{id}
-POST /benchmarks/{id}/results
+
+```text
+GET    /benchmarks
+GET    /benchmarks/{id}
+POST   /benchmarks
+PUT    /benchmarks/{id}
+DELETE /benchmarks/{id}
+POST   /benchmarks/{id}/results
+GET    /benchmarks/{id}/results/me
 ```
 
-Récords Personales:
-```
-GET /personal-records
-GET /personal-records/{exercise}
-PUT /personal-records/{exercise}
+Récords personales:
+
+```text
+GET  /prs/exercises
+GET  /prs/{exercise}/me
+POST /prs/{exercise}
+GET  /prs/{exercise}/me/history
 ```
 
 Propuestas:
-```
-POST /proposals
-GET /admin/proposals
-PUT /admin/proposals/{id}/status
+
+```text
+POST  /proposals
+GET   /proposals/pending
+PATCH /proposals/{id}/approve
+PATCH /proposals/{id}/reject
 ```
 
 ## Variables de entorno
@@ -138,7 +130,8 @@ Tests en `src/test/java/com/wodtracker/wodservice/`
 ## Documentación API
 
 Swagger UI disponible en:
-```
+
+```text
 http://localhost:8081/swagger-ui.html
 JSON: http://localhost:8081/v3/api-docs
 ```
@@ -146,7 +139,6 @@ JSON: http://localhost:8081/v3/api-docs
 ## Seguridad
 
 - JWT con firma HS256
-- Role-based access control
+- Control de acceso basado en roles
 - CORS configurado
-- Stateless authentication
-- HTTPS recomendado en producción
+- Autenticación stateless

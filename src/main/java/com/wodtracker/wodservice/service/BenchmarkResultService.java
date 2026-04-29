@@ -1,7 +1,7 @@
 package com.wodtracker.wodservice.service;
 
-import com.wodtracker.wodservice.dto.BenchmarkResultRequestDTO;
-import com.wodtracker.wodservice.dto.BenchmarkResultResponseDTO;
+import com.wodtracker.wodservice.dto.request.BenchmarkResultRequestDTO;
+import com.wodtracker.wodservice.dto.response.BenchmarkResultResponseDTO;
 
 import java.util.List;
 
