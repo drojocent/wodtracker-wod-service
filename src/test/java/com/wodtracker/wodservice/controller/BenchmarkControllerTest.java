@@ -1,10 +1,10 @@
 package com.wodtracker.wodservice.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.wodtracker.wodservice.dto.BenchmarkRequestDTO;
-import com.wodtracker.wodservice.dto.BenchmarkResponseDTO;
-import com.wodtracker.wodservice.dto.BenchmarkResultRequestDTO;
-import com.wodtracker.wodservice.dto.BenchmarkResultResponseDTO;
+import com.wodtracker.wodservice.dto.request.BenchmarkRequestDTO;
+import com.wodtracker.wodservice.dto.response.BenchmarkResponseDTO;
+import com.wodtracker.wodservice.dto.request.BenchmarkResultRequestDTO;
+import com.wodtracker.wodservice.dto.response.BenchmarkResultResponseDTO;
 import com.wodtracker.wodservice.entity.BenchmarkType;
 import com.wodtracker.wodservice.service.BenchmarkResultService;
 import com.wodtracker.wodservice.service.BenchmarkService;

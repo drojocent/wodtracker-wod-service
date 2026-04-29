@@ -1,7 +1,7 @@
 package com.wodtracker.wodservice.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.wodtracker.wodservice.dto.ErrorResponse;
+import com.wodtracker.wodservice.dto.response.ErrorResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpStatus;

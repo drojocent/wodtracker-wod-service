@@ -1,4 +1,4 @@
-package com.wodtracker.wodservice.dto;
+package com.wodtracker.wodservice.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,11 +9,13 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class BenchmarkResultResponseDTO {
+public class ResultResponseDTO {
 
     private Long id;
-    private Long benchmarkId;
     private Long userId;
+    private Long wodId;
+    private String wodName;
+    private String wodDescription;
     private String result;
     private LocalDateTime createdAt;
 }

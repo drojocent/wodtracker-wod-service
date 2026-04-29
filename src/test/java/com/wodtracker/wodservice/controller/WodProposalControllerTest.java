@@ -1,8 +1,8 @@
 package com.wodtracker.wodservice.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.wodtracker.wodservice.dto.WodProposalRequestDTO;
-import com.wodtracker.wodservice.dto.WodProposalResponseDTO;
+import com.wodtracker.wodservice.dto.request.WodProposalRequestDTO;
+import com.wodtracker.wodservice.dto.response.WodProposalResponseDTO;
 import com.wodtracker.wodservice.entity.ProposalStatus;
 import com.wodtracker.wodservice.entity.WodType;
 import com.wodtracker.wodservice.exception.InvalidStateException;

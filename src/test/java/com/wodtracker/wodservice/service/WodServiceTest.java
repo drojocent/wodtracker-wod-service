@@ -1,7 +1,7 @@
 package com.wodtracker.wodservice.service;
 
-import com.wodtracker.wodservice.dto.WodRequestDTO;
-import com.wodtracker.wodservice.dto.WodResponseDTO;
+import com.wodtracker.wodservice.dto.request.WodRequestDTO;
+import com.wodtracker.wodservice.dto.response.WodResponseDTO;
 import com.wodtracker.wodservice.entity.Wod;
 import com.wodtracker.wodservice.entity.WodType;
 import com.wodtracker.wodservice.exception.ResourceNotFoundException;

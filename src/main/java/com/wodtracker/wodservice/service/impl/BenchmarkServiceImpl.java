@@ -1,7 +1,7 @@
 package com.wodtracker.wodservice.service.impl;
 
-import com.wodtracker.wodservice.dto.BenchmarkRequestDTO;
-import com.wodtracker.wodservice.dto.BenchmarkResponseDTO;
+import com.wodtracker.wodservice.dto.request.BenchmarkRequestDTO;
+import com.wodtracker.wodservice.dto.response.BenchmarkResponseDTO;
 import com.wodtracker.wodservice.entity.Benchmark;
 import com.wodtracker.wodservice.exception.ResourceNotFoundException;
 import com.wodtracker.wodservice.repository.BenchmarkRepository;

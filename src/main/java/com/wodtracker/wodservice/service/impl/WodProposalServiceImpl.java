@@ -1,7 +1,7 @@
 package com.wodtracker.wodservice.service.impl;
 
-import com.wodtracker.wodservice.dto.WodProposalRequestDTO;
-import com.wodtracker.wodservice.dto.WodProposalResponseDTO;
+import com.wodtracker.wodservice.dto.request.WodProposalRequestDTO;
+import com.wodtracker.wodservice.dto.response.WodProposalResponseDTO;
 import com.wodtracker.wodservice.entity.ProposalStatus;
 import com.wodtracker.wodservice.entity.Wod;
 import com.wodtracker.wodservice.entity.WodProposal;

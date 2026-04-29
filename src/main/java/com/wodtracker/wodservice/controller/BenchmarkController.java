@@ -1,9 +1,9 @@
 package com.wodtracker.wodservice.controller;
 
-import com.wodtracker.wodservice.dto.BenchmarkRequestDTO;
-import com.wodtracker.wodservice.dto.BenchmarkResponseDTO;
-import com.wodtracker.wodservice.dto.BenchmarkResultRequestDTO;
-import com.wodtracker.wodservice.dto.BenchmarkResultResponseDTO;
+import com.wodtracker.wodservice.dto.request.BenchmarkRequestDTO;
+import com.wodtracker.wodservice.dto.response.BenchmarkResponseDTO;
+import com.wodtracker.wodservice.dto.request.BenchmarkResultRequestDTO;
+import com.wodtracker.wodservice.dto.response.BenchmarkResultResponseDTO;
 import com.wodtracker.wodservice.service.BenchmarkResultService;
 import com.wodtracker.wodservice.service.BenchmarkService;
 import io.swagger.v3.oas.annotations.Operation;

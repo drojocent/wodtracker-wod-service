@@ -1,4 +1,4 @@
-package com.wodtracker.wodservice.dto;
+package com.wodtracker.wodservice.dto.response;
 
 import com.wodtracker.wodservice.entity.ProposalStatus;
 import com.wodtracker.wodservice.entity.WodType;

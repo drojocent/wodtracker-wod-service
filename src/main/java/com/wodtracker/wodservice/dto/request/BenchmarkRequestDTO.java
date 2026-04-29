@@ -1,4 +1,4 @@
-package com.wodtracker.wodservice.dto;
+package com.wodtracker.wodservice.dto.request;
 
 import com.wodtracker.wodservice.entity.BenchmarkType;
 import jakarta.validation.constraints.NotBlank;
