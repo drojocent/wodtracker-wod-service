@@ -34,7 +34,7 @@ public class WodServiceImpl implements WodService {
     @Override
     @Transactional(readOnly = true)
     public List<WodResponseDTO> getAllWods() {
-        return wodRepository.findAllOrderByDateDescNullsLast().stream()
+        return wodRepository.findVisibleWodsOrderedFromToday(LocalDate.now()).stream()
                 .map(this::toResponse)
                 .toList();
     }

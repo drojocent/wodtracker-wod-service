@@ -21,6 +21,7 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -72,22 +73,22 @@ class WodServiceTest {
     }
 
     @Test
-    void shouldReturnWodsOrderedByDateDescWithUndatedAtTheEnd() {
+    void shouldReturnTodayAndFutureWodsWithUndatedAtTheEnd() {
         LocalDate today = LocalDate.now();
-        Wod futureWod = new Wod(2L, "Manana", "Workout futuro", WodType.AMRAP, today.plusDays(1), true, List.of());
         Wod todayWod = new Wod(1L, "Hoy", "Workout de hoy", WodType.FOR_TIME, today, true, List.of());
-        Wod pastWod = new Wod(3L, "Ayer", "Workout pasado", WodType.EMOM, today.minusDays(1), true, List.of());
+        Wod futureWod = new Wod(2L, "Manana", "Workout futuro", WodType.AMRAP, today.plusDays(1), true, List.of());
+        Wod laterFutureWod = new Wod(3L, "Pasado manana", "Workout futuro lejano", WodType.EMOM, today.plusDays(3), true, List.of());
         Wod undatedWod = new Wod(4L, "Sin fecha", "Workout pendiente", WodType.FOR_TIME, null, true, List.of());
 
-        when(wodRepository.findAllOrderByDateDescNullsLast())
-                .thenReturn(List.of(futureWod, todayWod, pastWod, undatedWod));
+        when(wodRepository.findVisibleWodsOrderedFromToday(eq(today)))
+                .thenReturn(List.of(todayWod, futureWod, laterFutureWod, undatedWod));
 
         List<WodResponseDTO> response = wodService.getAllWods();
 
         assertThat(response).hasSize(4);
         assertThat(response).extracting(WodResponseDTO::getName)
-                .containsExactly("Manana", "Hoy", "Ayer", "Sin fecha");
-        verify(wodRepository).findAllOrderByDateDescNullsLast();
+                .containsExactly("Hoy", "Manana", "Pasado manana", "Sin fecha");
+        verify(wodRepository).findVisibleWodsOrderedFromToday(today);
     }
 
     @Test
