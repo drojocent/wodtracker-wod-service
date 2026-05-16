@@ -15,9 +15,16 @@ public interface WodRepository extends JpaRepository<Wod, Long> {
     @Query("""
             SELECT w
             FROM Wod w
-            ORDER BY CASE WHEN w.date IS NULL THEN 1 ELSE 0 END, w.date DESC
+            WHERE w.date IS NULL OR w.date >= :today
+            ORDER BY
+                CASE
+                    WHEN w.date = :today THEN 0
+                    WHEN w.date IS NULL THEN 2
+                    ELSE 1
+                END,
+                w.date ASC
             """)
-    List<Wod> findAllOrderByDateDescNullsLast();
+    List<Wod> findVisibleWodsOrderedFromToday(LocalDate today);
 
     boolean existsByDate(LocalDate date);
 
